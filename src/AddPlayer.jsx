@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class AddPlayerForm extends React.Component {
   state = {
@@ -32,6 +33,6 @@ class AddPlayerForm extends React.Component {
 }
 
 AddPlayerForm.propTypes = {
-  onAdd: React.PropTypes.func.isRequired
+  onAdd: PropTypes.func.isRequired
 };
 export default AddPlayerForm;
