@@ -18,26 +18,29 @@ class ScoreBoard extends React.Component {
         players: []
     };
 
+    // componentDidUpdate() {
+    //     this.setState(state => ({
+    //         players: state.players.
+    //     }));
+    // }
+
     onScoreChange(id, delta) {
         const { players } = this.state;
-        const newPlayers = players.map(player => {
-            if (player.id === id) {
-                if (delta === "inc") {
-                    player.score += 10;
-                } else {
-                    player.score -= 10;
+        const newPlayers = players
+            .map(player => {
+                if (player.id === id) {
+                    if (delta === "inc") {
+                        player.score += 10;
+                    } else {
+                        player.score -= 10;
+                    }
                 }
-            }
-            return player;
-        });
-
-        console.log(newPlayers);
+                return player;
+            })
+            .sort((a, b) => b.score - a.score);
         this.setState({
             players: newPlayers
         });
-        // console.log(delta);
-
-        // this.setState(this.state);
     }
 
     onPlayerAdd = name => {
