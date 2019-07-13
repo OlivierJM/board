@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import R from "ramda";
 import Header from "./Header";
 import Player from "./Player";
 import AddPlayerForm from "./AddPlayer";
@@ -12,18 +13,29 @@ let nextId = 4;
 
 class ScoreBoard extends React.Component {
     state = {
-        name: "",
-        score: 0,
-        id: 1,
+        // name: "",
+        // score: 0,
+        // id: 1,
         players: []
     };
 
-    onScoreChange(index, delta) {
-        // this.state.players[index].score += delta;
-        console.log(delta);
-        console.log(index);
+    onScoreChange(id, delta) {
+        this.setState(state => ({
+            players: state.players.map(player => {
+                if (player.id === id) {
+                    if (delta === 1) {
+                        player.score += 10;
+                        R.add(player.score, 10);
+                        // console.log(delta);
+                    }
+                    player.score -= 10;
+                }
+                return player;
+            })
+        }));
+        // console.log(delta);
 
-        this.setState(this.state);
+        // this.setState(this.state);
     }
 
     onPlayerAdd = name => {
@@ -47,10 +59,11 @@ class ScoreBoard extends React.Component {
                 <Header title={"Scoreboard"} players={this.state.players} />
                 <div className="players">
                     {this.state.players.map((player, index) => {
+                        console.log(player);
                         return (
                             <Player
                                 onScoreChange={delta =>
-                                    this.onScoreChange(index, delta)
+                                    this.onScoreChange(player.id, delta)
                                 }
                                 name={player.name}
                                 score={player.score}
