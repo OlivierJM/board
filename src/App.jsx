@@ -61,7 +61,7 @@ class ScoreBoard extends React.Component {
     render() {
         return (
             <div className="scoreboard">
-                <Header title={"Scoreboard"} players={this.state.players} />
+                <Header title={"Bible Quiz"} players={this.state.players} />
                 <div className="players">
                     {this.state.players.map((player, index) => {
                         return (
