@@ -6,7 +6,7 @@ function Counter(props) {
         <div className="counter">
             <button
                 className="counter-action decrement"
-                onClick={() => props.onChange(-1)}
+                onClick={() => props.onChange("dec")}
             >
                 {" "}
                 -{" "}
@@ -14,7 +14,7 @@ function Counter(props) {
             <div className="counter-score">{props.score}</div>
             <button
                 className="counter-action increment"
-                onClick={() => props.onChange(1)}
+                onClick={() => props.onChange("inc")}
             >
                 {" "}
                 +{" "}

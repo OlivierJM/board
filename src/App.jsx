@@ -2,7 +2,6 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import R from "ramda";
 import Header from "./Header";
 import Player from "./Player";
 import AddPlayerForm from "./AddPlayer";
@@ -20,19 +19,22 @@ class ScoreBoard extends React.Component {
     };
 
     onScoreChange(id, delta) {
-        this.setState(state => ({
-            players: state.players.map(player => {
-                if (player.id === id) {
-                    if (delta === 1) {
-                        player.score += 10;
-                        R.add(player.score, 10);
-                        // console.log(delta);
-                    }
+        const { players } = this.state;
+        const newPlayers = players.map(player => {
+            if (player.id === id) {
+                if (delta === "inc") {
+                    player.score += 10;
+                } else {
                     player.score -= 10;
                 }
-                return player;
-            })
-        }));
+            }
+            return player;
+        });
+
+        console.log(newPlayers);
+        this.setState({
+            players: newPlayers
+        });
         // console.log(delta);
 
         // this.setState(this.state);
@@ -59,7 +61,6 @@ class ScoreBoard extends React.Component {
                 <Header title={"Scoreboard"} players={this.state.players} />
                 <div className="players">
                     {this.state.players.map((player, index) => {
-                        console.log(player);
                         return (
                             <Player
                                 onScoreChange={delta =>
