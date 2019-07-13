@@ -19,11 +19,14 @@ class ScoreBoard extends React.Component {
     };
 
     onScoreChange(index, delta) {
-        this.state.players[index].score += delta;
+        // this.state.players[index].score += delta;
+        console.log(delta);
+        console.log(index);
+
         this.setState(this.state);
     }
 
-    onPlayerAdd(name) {
+    onPlayerAdd = name => {
         this.state.players.push({
             name: name,
             score: 0,
@@ -31,7 +34,7 @@ class ScoreBoard extends React.Component {
         });
         this.setState(this.state);
         nextId++;
-    }
+    };
 
     onRemovePlayer(index) {
         this.state.players.splice(index, 1);
