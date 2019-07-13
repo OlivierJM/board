@@ -8,21 +8,13 @@ import AddPlayerForm from "./AddPlayer";
 
 import "./App.css";
 
-let nextId = 4;
+let nextId = Math.floor(Math.random() * 1000);
+const players = localStorage.getItem("players");
 
 class ScoreBoard extends React.Component {
     state = {
-        // name: "",
-        // score: 0,
-        // id: 1,
-        players: []
+        players: players === null ? [] : JSON.parse(players)
     };
-
-    // componentDidUpdate() {
-    //     this.setState(state => ({
-    //         players: state.players.
-    //     }));
-    // }
 
     onScoreChange(id, delta) {
         const { players } = this.state;
@@ -38,9 +30,14 @@ class ScoreBoard extends React.Component {
                 return player;
             })
             .sort((a, b) => b.score - a.score);
-        this.setState({
-            players: newPlayers
-        });
+        this.setState(
+            {
+                players: newPlayers
+            },
+            () => {
+                localStorage.setItem("players", JSON.stringify(newPlayers));
+            }
+        );
     }
 
     onPlayerAdd = name => {
@@ -53,12 +50,15 @@ class ScoreBoard extends React.Component {
         nextId++;
     };
 
-    onRemovePlayer(index) {
+    onRemovePlayer = index => {
         this.state.players.splice(index, 1);
-        this.setState(this.state);
-    }
+        this.setState(this.state, () => {
+            localStorage.setItem("players", JSON.stringify(this.state.players));
+        });
+    };
 
     render() {
+        console.log(players);
         return (
             <div className="scoreboard">
                 <Header title={"Bible Quiz"} players={this.state.players} />
