@@ -8,8 +8,6 @@ body {
 .scoreboard {
   background: #333;
   margin: 70px auto;
-  box-shadow: 0 4px 0px #333;
-  border-radius: 15px;
   display: flex;
   flex-direction: column;
   max-width: 1080px;
@@ -22,7 +20,6 @@ body {
   display: flex;
   align-items: center;
   background-color: #222;
-  border-radius: 15px 15px 0 0;
   border-bottom: solid 2px #444;
 }
 
@@ -63,7 +60,6 @@ button:focus {
   padding: 15px 10px 5px 10px;
   margin: -5px -10px -5px 10px;
   background: #2f2f2f;
-  border-radius: 0 15px 0 0;
 }
 
 .stopwatch-time {
@@ -74,7 +70,6 @@ button:focus {
 .stopwatch button {
   margin: 8px 5px;
   background-color: #222;
-  border-radius: 5px;
   padding: 7px 8px;
   border: none;
   color: #999;
@@ -175,7 +170,6 @@ button:focus {
 .add-player-form form {
   display: flex;
   background-color: #222;
-  border-radius: 0 0 20px 20px;
 }
 
 .add-player-form input[type="text"] {
@@ -183,7 +177,6 @@ button:focus {
   border-width: 0 0 1px 0;
   margin: 15px 10px 15px 15px;
   padding: 10px;
-  border-radius: 5px;
   background-color: #333;
   border-style: none;
   text-shadow: none;
@@ -208,7 +201,6 @@ button:focus {
   margin: 15px 15px 15px 0;
   padding: 10px;
   background-color: #333;
-  border-radius: 5px;
   border: none;
   color: #999;
   letter-spacing: 2px;
