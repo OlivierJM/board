@@ -6,9 +6,12 @@ function Player(props) {
     return (
         <div className="player">
             <div className="player-name">
-                <a className="remove-player" onClick={props.onRemove}>
-                    ❌
-                </a>
+                {/* <a /> */}
+                <button className="remove-player" onClick={props.onRemove}>
+                    <span role="img" aria-label="remove button">
+                        ❌
+                    </span>
+                </button>
                 {props.name}
             </div>
             <div className="player-score">

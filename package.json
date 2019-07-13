@@ -3,19 +3,30 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
+    "eslint-plugin-react": "^7.14.2",
     "prop-types": "^15.7.2",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "eslint": "^3.17.0",
-    "eslint-plugin-react": "^6.10.0",
-    "react-scripts": "0.9.3"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

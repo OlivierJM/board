@@ -84,13 +84,6 @@ class ScoreBoard extends React.Component {
 }
 
 ScoreBoard.propTypes = {
-    title: PropTypes.string,
-    initialPlayers: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            score: PropTypes.number.isRequired,
-            id: PropTypes.number.isRequired
-        })
-    ).isRequired
+    title: PropTypes.string
 };
 export default ScoreBoard;
