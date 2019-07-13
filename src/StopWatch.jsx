@@ -54,8 +54,10 @@ class Stopwatch extends React.Component {
         let seconds = Math.floor(this.state.elapsedTime / 1000);
         return (
             <div className="stopwatch">
-                <h2>Stopwatch</h2>
-                <div className="stopwatch-time">{seconds}</div>
+                <h2>Time</h2>
+                <div className="stopwatch-time" style={{ fontSize: 40 }}>
+                    {seconds}
+                </div>
                 {this.state.running ? (
                     <button onClick={this.onStop}>Stop</button>
                 ) : (

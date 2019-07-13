@@ -9,11 +9,11 @@ import AddPlayerForm from "./AddPlayer";
 import "./App.css";
 
 let nextId = Math.floor(Math.random() * 1000);
-const players = localStorage.getItem("players");
+const _players = localStorage.getItem("players");
 
 class ScoreBoard extends React.Component {
     state = {
-        players: players === null ? [] : JSON.parse(players)
+        players: _players === null ? [] : JSON.parse(_players)
     };
 
     onScoreChange(id, delta) {
@@ -46,7 +46,9 @@ class ScoreBoard extends React.Component {
             score: 0,
             id: nextId
         });
-        this.setState(this.state);
+        this.setState(this.state, () => {
+            localStorage.setItem("players", JSON.stringify(this.state.players));
+        });
         nextId++;
     };
 
@@ -58,24 +60,29 @@ class ScoreBoard extends React.Component {
     };
 
     render() {
-        console.log(players);
+        const { players } = this.state;
+        console.log(this.state.players);
         return (
             <div className="scoreboard">
                 <Header title={"Bible Quiz"} players={this.state.players} />
                 <div className="players">
-                    {this.state.players.map((player, index) => {
-                        return (
-                            <Player
-                                onScoreChange={delta =>
-                                    this.onScoreChange(player.id, delta)
-                                }
-                                name={player.name}
-                                score={player.score}
-                                onRemove={() => this.onRemovePlayer(index)}
-                                key={player.id}
-                            />
-                        );
-                    })}
+                    {players.length
+                        ? players.map((player, index) => {
+                              return (
+                                  <Player
+                                      onScoreChange={delta =>
+                                          this.onScoreChange(player.id, delta)
+                                      }
+                                      name={player.name}
+                                      score={player.score}
+                                      onRemove={() =>
+                                          this.onRemovePlayer(index)
+                                      }
+                                      key={player.id}
+                                  />
+                              );
+                          })
+                        : null}
                 </div>
                 <AddPlayerForm onAdd={this.onPlayerAdd} />
             </div>

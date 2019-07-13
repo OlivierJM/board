@@ -1,7 +1,7 @@
 body {
-  background: #d5d5d5; 
+  background: #d5d5d5;
   font-family: arial;
-  color: #FAFAFA;
+  color: #fafafa;
   text-transform: uppercase;
 }
 
@@ -13,7 +13,7 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1080px;
-  padding-bottom: .85em;
+  padding-bottom: 0.85em;
 }
 
 .header {
@@ -52,7 +52,7 @@ button:focus {
   font-weight: normal;
   letter-spacing: 2px;
   color: #666;
-  font-size: .7em;
+  font-size: 0.7em;
 }
 
 .stats td:last-child {
@@ -91,7 +91,7 @@ button:focus {
 }
 
 .stopwatch h2 {
-  font-size: .6em;
+  font-size: 0.6em;
   margin: 0;
   font-weight: normal;
   letter-spacing: 2px;
@@ -134,7 +134,7 @@ button:focus {
 .counter-action {
   border: none;
   font-weight: bold;
-  color: #FAFAFA;
+  color: #fafafa;
   display: block;
   padding: 20px 20px;
   cursor: pointer;
@@ -145,7 +145,7 @@ button:focus {
 }
 
 .counter-action.increment {
-  background: #66BB6A;
+  background: #66bb6a;
 }
 
 .counter-action.increment:hover {
@@ -165,21 +165,20 @@ button:focus {
 .counter-score {
   flex-grow: 1;
   background: #2b2b2b;
-  color: #FAFAFA;
+  color: #fafafa;
   text-align: center;
   font-family: monospace;
   padding: 10px;
   font-size: 2em;
 }
 
-
 .add-player-form form {
   display: flex;
   background-color: #222;
-  border-radius: 0 0 20px 20px
+  border-radius: 0 0 20px 20px;
 }
 
-.add-player-form input[type=text] {
+.add-player-form input[type="text"] {
   flex-grow: 1;
   border-width: 0 0 1px 0;
   margin: 15px 10px 15px 15px;
@@ -194,19 +193,19 @@ button:focus {
   outline: none;
 }
 
-.add-player-form input[type=text]::-webkit-input-placeholder{
+.add-player-form input[type="text"]::-webkit-input-placeholder {
   color: #666;
   letter-spacing: 2px;
 }
 
-.add-player-form input[type=text]:focus{
+.add-player-form input[type="text"]:focus {
   background-color: #444;
 }
 
-.add-player-form input[type=submit] {
+.add-player-form input[type="submit"] {
   display: block;
-  font-size: .6em;
-  margin: 15px 15px 15px 0; 
+  font-size: 0.6em;
+  margin: 15px 15px 15px 0;
   padding: 10px;
   background-color: #333;
   border-radius: 5px;
@@ -218,7 +217,7 @@ button:focus {
   text-transform: uppercase;
 }
 
-.add-player-form input[type=submit]:hover{
+.add-player-form input[type="submit"]:hover {
   background: #4b71b5;
   color: #fafafa;
   cursor: pointer;
