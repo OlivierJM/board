@@ -7,19 +7,19 @@ let nextId = 4;
 
 function Stats(props) {
   let totalPlayers = props.players.length;
-  let totalPoints = props.players.reduce((acc, next) => acc += next.score , 0);
-  
+  let totalPoints = props.players.reduce((acc, next) => (acc += next.score), 0);
+
   return (
     <table className="stats">
       <tbody>
         <tr>
           <td>Players:</td>
           <td>{totalPlayers}</td>
-        </tr> 
+        </tr>
         <tr>
           <td>Total Points:</td>
           <td>{totalPoints}</td>
-        </tr> 
+        </tr>
       </tbody>
     </table>
   );
@@ -39,7 +39,7 @@ class Stopwatch extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.onTick, 100)
+    this.interval = setInterval(this.onTick, 100);
   }
 
   componentWillUnmount() {
@@ -47,8 +47,8 @@ class Stopwatch extends React.Component {
   }
 
   onStop = () => {
-    this.setState({running: false});
-  }
+    this.setState({ running: false });
+  };
 
   onTick = () => {
     if (this.state.running) {
@@ -56,31 +56,35 @@ class Stopwatch extends React.Component {
       this.setState({
         previousTime: now,
         elapsedTime: this.state.elapsedTime + (now - this.state.previousTime)
-      })
+      });
     }
-  }
+  };
 
   onStart = () => {
     this.setState({
       running: true,
       previousTime: Date.now()
     });
-  }
+  };
 
   onReset = () => {
     this.setState({
       elapsedTime: 0,
       previousTime: Date.now()
-    })
-  }
+    });
+  };
 
   render() {
-    let seconds = Math.floor(this.state.elapsedTime / 1000)
+    let seconds = Math.floor(this.state.elapsedTime / 1000);
     return (
       <div className="stopwatch">
         <h2>Stopwatch</h2>
         <div className="stopwatch-time">{seconds}</div>
-        {this.state.running ? <button onClick={this.onStop}>Stop</button> : <button onClick={this.onStart}>Start</button>}
+        {this.state.running ? (
+          <button onClick={this.onStop}>Stop</button>
+        ) : (
+          <button onClick={this.onStart}>Start</button>
+        )}
         <button onClick={this.onReset}>Reset</button>
       </div>
     );
@@ -89,7 +93,7 @@ class Stopwatch extends React.Component {
 
 let AddPlayerForm = React.createClass({
   propTypes: {
-    onAdd: React.PropTypes.func.isRequired,
+    onAdd: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
@@ -99,21 +103,25 @@ let AddPlayerForm = React.createClass({
   },
 
   onNameChange: function(e) {
-    this.setState({name: e.target.value});
+    this.setState({ name: e.target.value });
   },
 
   onSubmit: function(e) {
     e.preventDefault();
 
     this.props.onAdd(this.state.name);
-    this.setState({name: ""});
+    this.setState({ name: "" });
   },
 
   render: function() {
     return (
       <div className="add-player-form">
         <form onSubmit={this.onSubmit}>
-          <input type="text" value={this.state.name} onChange={this.onNameChange} />
+          <input
+            type="text"
+            value={this.state.name}
+            onChange={this.onNameChange}
+          />
           <input type="submit" value="Add Player" />
         </form>
       </div>
@@ -122,7 +130,7 @@ let AddPlayerForm = React.createClass({
 });
 
 Stats.propTypes = {
-  players: React.PropTypes.array.isRequired,
+  players: React.PropTypes.array.isRequired
 };
 
 function Header(props) {
@@ -137,74 +145,82 @@ function Header(props) {
 
 Header.propTypes = {
   title: React.PropTypes.string.isRequired,
-  players: React.PropTypes.array.isRequired,
+  players: React.PropTypes.array.isRequired
 };
 
 function Counter(props) {
   return (
     <div className="counter">
-      <button className="counter-action decrement" onClick={() => props.onChange(-1)}> - </button>
+      <button
+        className="counter-action decrement"
+        onClick={() => props.onChange(-1)}
+      >
+        {" "}
+        -{" "}
+      </button>
       <div className="counter-score">{props.score}</div>
-      <button className="counter-action increment" onClick={() => props.onChange(1)}> + </button>
+      <button
+        className="counter-action increment"
+        onClick={() => props.onChange(1)}
+      >
+        {" "}
+        +{" "}
+      </button>
     </div>
   );
 }
 
 Counter.propTypes = {
   score: React.PropTypes.number.isRequired,
-  onChange: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func.isRequired
 };
 
 function Player(props) {
-    return (
-      <div className="player">
-        <div className="player-name">
-          <a className="remove-player" onClick={props.onRemove}>❌</a>
-          {props.name}
-        </div>
-        <div className="player-score">
-          <Counter score={props.score} onChange={props.onScoreChange} />
-        </div>
+  return (
+    <div className="player">
+      <div className="player-name">
+        <a className="remove-player" onClick={props.onRemove}>
+          ❌
+        </a>
+        {props.name}
       </div>
-    );
+      <div className="player-score">
+        <Counter score={props.score} onChange={props.onScoreChange} />
+      </div>
+    </div>
+  );
 }
 
 Player.propTypes = {
-    name: React.PropTypes.string.isRequired,
-    score: React.PropTypes.number.isRequired,
-    onScoreChange: React.PropTypes.func.isRequired,
-    onRemove: React.PropTypes.func.isRequired
+  name: React.PropTypes.string.isRequired,
+  score: React.PropTypes.number.isRequired,
+  onScoreChange: React.PropTypes.func.isRequired,
+  onRemove: React.PropTypes.func.isRequired
 };
 
-var Application = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string,
-    initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
+ScoreBoard.propTypes = {
+  title: React.PropTypes.string,
+  initialPlayers: React.PropTypes.arrayOf(
+    React.PropTypes.shape({
       name: React.PropTypes.string.isRequired,
       score: React.PropTypes.number.isRequired,
       id: React.PropTypes.number.isRequired
-    })).isRequired,
-  },
-
-  getDefaultProps: function() {
-    return {
-      title: "Scoreboard",
-    };
-  },
-
-  getInitialState: function() {
-    return {
-      players: this.props.initialPlayers,
-    };
-  },
-
+    })
+  ).isRequired
+};
+class ScoreBoard extends React.Component {
+  state = {
+    name: "",
+    score: 0,
+    id: 1
+  };
 
   onScoreChange(index, delta) {
     this.state.players[index].score += delta;
     this.setState(this.state);
-  },
+  }
 
-  onPlayerAdd: function(name) {
+  onPlayerAdd(name) {
     this.state.players.push({
       name: name,
       score: 0,
@@ -212,33 +228,34 @@ var Application = React.createClass({
     });
     this.setState(this.state);
     nextId++;
-  },
+  }
 
-  onRemovePlayer: function(index) {
+  onRemovePlayer(index) {
     this.state.players.splice(index, 1);
     this.setState(this.state);
-  },
+  }
 
-  render: function() {
+  render() {
     return (
-    <div className="scoreboard">
-      <Header title={this.props.title} players={this.state.players} />
-      <div className="players">
-        {this.state.players.map((player, index) => { 
-          return (
-            <Player 
-              onScoreChange={(delta) => this.onScoreChange(index, delta)}
-              name={player.name} 
-              score={player.score} 
-              onRemove={() => this.onRemovePlayer(index)}
-              key={player.id} />
-          );
-        })}
+      <div className="scoreboard">
+        <Header title={this.props.title} players={this.state.players} />
+        <div className="players">
+          {this.state.players.map((player, index) => {
+            return (
+              <Player
+                onScoreChange={delta => this.onScoreChange(index, delta)}
+                name={player.name}
+                score={player.score}
+                onRemove={() => this.onRemovePlayer(index)}
+                key={player.id}
+              />
+            );
+          })}
+        </div>
+        <AddPlayerForm onAdd={this.onPlayerAdd} />
       </div>
-      <AddPlayerForm onAdd={this.onPlayerAdd} />
-    </div>
     );
   }
-});
+}
 
 export default Application;
