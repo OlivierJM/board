@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Header from "./Header";
 import Player from "./Player";
 import AddPlayerForm from "./AddPlayer";
@@ -65,7 +66,16 @@ class ScoreBoard extends React.Component {
         return (
             <div className="scoreboard">
                 <Header title={"Bible Quiz"} players={this.state.players} />
-                <div className="players">
+                <ReactCSSTransitionGroup
+                    transitionName="list-item"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={true}
+                    transitionEnterTimeout={500}
+                    transitionLeave={true}
+                    transitionLeaveTimeout={300}
+                >
+                    {/* <div className="players"> */}
                     {players.length
                         ? players.map((player, index) => {
                               return (
@@ -83,7 +93,8 @@ class ScoreBoard extends React.Component {
                               );
                           })
                         : null}
-                </div>
+                    {/* </div> */}
+                </ReactCSSTransitionGroup>
                 <AddPlayerForm onAdd={this.onPlayerAdd} />
             </div>
         );
