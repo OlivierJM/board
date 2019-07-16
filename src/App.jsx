@@ -65,8 +65,10 @@ class ScoreBoard extends React.Component {
         console.log(this.state.players);
         return (
             <div className="scoreboard">
-                <Header title={"Bible Quiz"} players={this.state.players} />
-                <ReactCSSTransitionGroup
+                <Header title={"Contact OlivierJM for any questions"} players={this.state.players} />
+                {
+                /*
+                    <ReactCSSTransitionGroup
                     transitionName="list-item"
                     transitionAppear={true}
                     transitionAppearTimeout={500}
@@ -75,7 +77,7 @@ class ScoreBoard extends React.Component {
                     transitionLeave={true}
                     transitionLeaveTimeout={300}
                 >
-                    {/* <div className="players"> */}
+                   
                     {players.length
                         ? players.map((player, index) => {
                               return (
@@ -93,9 +95,12 @@ class ScoreBoard extends React.Component {
                               );
                           })
                         : null}
-                    {/* </div> */}
+                  
                 </ReactCSSTransitionGroup>
                 <AddPlayerForm onAdd={this.onPlayerAdd} />
+                */
+                }
+                
             </div>
         );
     }
