@@ -4,7 +4,7 @@ class Stopwatch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            running: false,
+            running: true,
             elapsedTime: 0,
             previousTime: 0
         };
