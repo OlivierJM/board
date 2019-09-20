@@ -65,9 +65,8 @@ class ScoreBoard extends React.Component {
         console.log(this.state.players);
         return (
             <div className="scoreboard">
-                <Header title={"Contact OlivierJM for any questions"} players={this.state.players} />
-                {
-                /*
+                <Header title={"Bible Quiz"} players={this.state.players} />
+               
                     <ReactCSSTransitionGroup
                     transitionName="list-item"
                     transitionAppear={true}
@@ -98,8 +97,6 @@ class ScoreBoard extends React.Component {
                   
                 </ReactCSSTransitionGroup>
                 <AddPlayerForm onAdd={this.onPlayerAdd} />
-                */
-                }
                 
             </div>
         );
